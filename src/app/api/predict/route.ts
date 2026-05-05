@@ -14,34 +14,32 @@ export async function POST(request: Request) {
     }
 
     const rankNum = Number(rank);
-    let minRating = 0;
+    const examType = exam.includes('NEET') ? 'NEET' : 'JEE';
 
-    // Rule-based logic mapping rank to a rating tier
-    if (rankNum <= 5000) {
-      minRating = 4.8; // Top tier (e.g., IITs, BITS)
-    } else if (rankNum <= 20000) {
-      minRating = 4.5; // High tier (e.g., NITs, DTU, IIITs)
-    } else if (rankNum <= 50000) {
-      minRating = 4.2; // Mid-high tier (e.g., MIT, VIT)
-    } else {
-      minRating = 4.0; // Standard tier
-    }
-
-    const matches = await College.find({ rating: { $gte: minRating } })
-      .sort({ rating: -1, fees: 1 })
-      .limit(3);
+    // Predict based on cutoff rank: user rank should be less than or equal to closing rank
+    // We search for colleges where the closing rank (cutoffRank) is >= user rank
+    const matches = await College.find({ 
+      examType: examType,
+      cutoffRank: { $gte: rankNum } 
+    })
+    .sort({ cutoffRank: 1 }) // Show most competitive first
+    .limit(3);
     
     // Add AI/rule-generated rationale
     const matchesWithRationale = matches.map(match => {
       const matchObj = match.toObject();
       let rationale = '';
-      if (rankNum <= 5000) {
-        rationale = `With a top-tier rank of ${rank}, ${match.name} is an excellent target due to its premier status and ${match.rating} rating.`;
-      } else if (rankNum <= 20000) {
-        rationale = `Your rank of ${rank} makes ${match.name} a strong contender, offering great value and a high rating of ${match.rating}.`;
+      
+      const safetyMargin = match.cutoffRank - rankNum;
+      
+      if (safetyMargin < 100) {
+        rationale = `Your rank of ${rankNum} is very close to the previous closing rank of ${match.cutoffRank}. This is a highly competitive 'Reach' option for you.`;
+      } else if (safetyMargin < 1000) {
+        rationale = `${match.name} is a strong 'Target' option. With a cutoff of ${match.cutoffRank}, you have a solid chance of admission.`;
       } else {
-        rationale = `${match.name} is a solid, realistic option for your rank profile, offering good placements and academic quality.`;
+        rationale = `With your rank of ${rankNum}, ${match.name} (Cutoff: ${match.cutoffRank}) is a very safe 'Likely' option with high probability of admission.`;
       }
+      
       return { ...matchObj, rationale };
     });
 

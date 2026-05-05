@@ -24,6 +24,8 @@ export interface ICollege extends Document {
   rating: number;
   description: string;
   image_url: string;
+  cutoffRank: number;
+  examType: 'JEE' | 'NEET';
   courses: ICourse[];
   placements: IPlacement[];
   reviews: IReview[];
@@ -53,6 +55,8 @@ const CollegeSchema: Schema = new Schema({
   rating: { type: Number, required: true, min: 1, max: 5 },
   description: { type: String, required: true },
   image_url: { type: String, required: true },
+  cutoffRank: { type: Number, required: true },
+  examType: { type: String, enum: ['JEE', 'NEET'], required: true },
   courses: [CourseSchema],
   placements: [PlacementSchema],
   reviews: [ReviewSchema],

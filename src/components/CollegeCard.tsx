@@ -15,7 +15,7 @@ export default function CollegeCard({ college }: { college: any; index?: number 
         <span
           className="absolute top-2 left-2 badge text-xs"
           style={{ background: college.examType === 'NEET' ? 'rgba(62,207,142,0.15)' : 'rgba(79,142,247,0.15)', color: college.examType === 'NEET' ? 'var(--color-success)' : 'var(--color-accent)' }}>
-          {college.examType}
+          {college.examType === 'JEE_ADVANCED' ? 'JEE Advanced' : college.examType === 'JEE_MAIN' ? 'JEE Main' : college.examType}
         </span>
       </div>
 

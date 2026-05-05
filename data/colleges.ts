@@ -7,7 +7,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Bhubaneswar",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 4162,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -37,7 +37,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Bombay",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 66,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -67,7 +67,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Mandi",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 3123,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -97,7 +97,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Delhi",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 126,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -127,7 +127,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Indore",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 1775,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -157,7 +157,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Kharagpur",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 466,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -187,7 +187,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Hyderabad",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 673,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -217,7 +217,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Jodhpur",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 2918,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -247,7 +247,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Kanpur",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 271,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -277,7 +277,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Madras",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 171,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -307,7 +307,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Gandhinagar",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 2020,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -337,7 +337,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Patna",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 3377,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -367,7 +367,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Roorkee",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 592,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -397,7 +397,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT (ISM) Dhanbad",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 3585,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -427,7 +427,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Ropar",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 2512,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -457,7 +457,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT (BHU) Varanasi",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 1489,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -487,7 +487,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Guwahati",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 792,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -517,7 +517,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Bhilai",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 7382,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -547,7 +547,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Goa",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 6242,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -577,7 +577,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Palakkad",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 6454,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -607,7 +607,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Tirupati",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 5034,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -637,7 +637,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Jammu",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 6651,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -667,7 +667,7 @@ export const colleges = [
     "description": "Premier engineering institute: IIT Dharwad",
     "image_url": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f",
     "cutoffRank": 7208,
-    "examType": "JEE",
+    "examType": "JEE_ADVANCED",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -697,7 +697,7 @@ export const colleges = [
     "description": "The top-ranked NIT in India with excellent industry connections.",
     "image_url": "https://images.unsplash.com/photo-1525926472898-a0f0237c0eb8",
     "cutoffRank": 5164,
-    "examType": "JEE",
+    "examType": "JEE_MAIN",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -727,7 +727,7 @@ export const colleges = [
     "description": "Beautiful campus located right on the beach.",
     "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
     "cutoffRank": 6200,
-    "examType": "JEE",
+    "examType": "JEE_MAIN",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -757,7 +757,7 @@ export const colleges = [
     "description": "Premier institute for computer science research and coding culture.",
     "image_url": "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8",
     "cutoffRank": 3104,
-    "examType": "JEE",
+    "examType": "JEE_MAIN",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -787,7 +787,7 @@ export const colleges = [
     "description": "Known for its amazing coding culture and technical infrastructure.",
     "image_url": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
     "cutoffRank": 6094,
-    "examType": "JEE",
+    "examType": "JEE_MAIN",
     "courses": [
       {
         "name": "B.Tech IT",
@@ -866,6 +866,126 @@ export const colleges = [
         "userName": "Dr. Priya",
         "rating": 4,
         "text": "Great infrastructure."
+      }
+    ]
+  },
+  {
+    "name": "NIT Rourkela",
+    "location": "Rourkela, Odisha",
+    "cutoffRank": 2940,
+    "examType": "JEE_MAIN",
+    "fees": 500000,
+    "rating": 4.6,
+    "description": "One of the largest NIT campuses.",
+    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "courses": [
+      {
+        "name": "B.Tech CSE",
+        "duration": "4 Years"
+      }
+    ],
+    "placements": [
+      {
+        "year": 2024,
+        "highestPackage": 50,
+        "averagePackage": 15
+      }
+    ],
+    "reviews": [
+      {
+        "userName": "Student",
+        "rating": 5,
+        "text": "Excellent faculty and placements."
+      }
+    ]
+  },
+  {
+    "name": "NIT Warangal",
+    "location": "Warangal, Telangana",
+    "cutoffRank": 2186,
+    "examType": "JEE_MAIN",
+    "fees": 580000,
+    "rating": 4.7,
+    "description": "First NIT established in India.",
+    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "courses": [
+      {
+        "name": "B.Tech CSE",
+        "duration": "4 Years"
+      }
+    ],
+    "placements": [
+      {
+        "year": 2024,
+        "highestPackage": 50,
+        "averagePackage": 15
+      }
+    ],
+    "reviews": [
+      {
+        "userName": "Student",
+        "rating": 5,
+        "text": "Excellent faculty and placements."
+      }
+    ]
+  },
+  {
+    "name": "NIT Allahabad",
+    "location": "Prayagraj, Uttar Pradesh",
+    "cutoffRank": 4191,
+    "examType": "JEE_MAIN",
+    "fees": 520000,
+    "rating": 4.6,
+    "description": "Known for its coding culture.",
+    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "courses": [
+      {
+        "name": "B.Tech CSE",
+        "duration": "4 Years"
+      }
+    ],
+    "placements": [
+      {
+        "year": 2024,
+        "highestPackage": 50,
+        "averagePackage": 15
+      }
+    ],
+    "reviews": [
+      {
+        "userName": "Student",
+        "rating": 5,
+        "text": "Excellent faculty and placements."
+      }
+    ]
+  },
+  {
+    "name": "IIIT Lucknow",
+    "location": "Lucknow, Uttar Pradesh",
+    "cutoffRank": 9824,
+    "examType": "JEE_MAIN",
+    "fees": 1100000,
+    "rating": 4.5,
+    "description": "Fastest growing IIIT.",
+    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "courses": [
+      {
+        "name": "B.Tech CSE",
+        "duration": "4 Years"
+      }
+    ],
+    "placements": [
+      {
+        "year": 2024,
+        "highestPackage": 50,
+        "averagePackage": 15
+      }
+    ],
+    "reviews": [
+      {
+        "userName": "Student",
+        "rating": 5,
+        "text": "Excellent faculty and placements."
       }
     ]
   }

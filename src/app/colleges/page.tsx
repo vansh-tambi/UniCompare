@@ -53,7 +53,8 @@ export default function CollegesPage() {
                 className="input-field"
                 style={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-border)', color: 'var(--color-foreground)' }}>
                 <option value="">All</option>
-                <option value="JEE">JEE</option>
+                <option value="JEE_MAIN">JEE Main</option>
+                <option value="JEE_ADVANCED">JEE Advanced</option>
                 <option value="NEET">NEET</option>
               </select>
             </div>

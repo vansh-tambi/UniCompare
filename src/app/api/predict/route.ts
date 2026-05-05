@@ -14,33 +14,38 @@ export async function POST(request: Request) {
     }
 
     const rankNum = Number(rank);
-    const examType = exam.includes('NEET') ? 'NEET' : 'JEE';
+    let examType = 'JEE_MAIN';
+    if (exam === 'JEE Advanced') examType = 'JEE_ADVANCED';
+    else if (exam === 'NEET') examType = 'NEET';
 
     // Predict based on cutoff rank: user rank should be less than or equal to closing rank
-    // We search for colleges where the closing rank (cutoffRank) is >= user rank
     const matches = await College.find({ 
       examType: examType,
       cutoffRank: { $gte: rankNum } 
     })
     .sort({ cutoffRank: 1 }) // Show most competitive first
-    .limit(3);
+    .limit(5);
     
     // Add AI/rule-generated rationale
     const matchesWithRationale = matches.map(match => {
       const matchObj = match.toObject();
+      let tag = 'Target';
       let rationale = '';
       
-      const safetyMargin = matchObj.cutoffRank - rankNum;
-      
-      if (safetyMargin < 100) {
-        rationale = `Your rank of ${rankNum} is very close to the previous closing rank of ${matchObj.cutoffRank}. This is a highly competitive 'Reach' option for you.`;
-      } else if (safetyMargin < 1000) {
-        rationale = `${matchObj.name} is a strong 'Target' option. With a cutoff of ${matchObj.cutoffRank}, you have a solid chance of admission.`;
+      const ratio = rankNum / matchObj.cutoffRank;
+
+      if (ratio > 0.9) {
+        tag = 'Reach';
+        rationale = `Highly competitive. Your rank of ${rankNum} is very close to the closing rank of ${matchObj.cutoffRank.toLocaleString()}.`;
+      } else if (ratio < 0.4) {
+        tag = 'Safe';
+        rationale = `Very high probability. Your rank is significantly better than the historical cutoff of ${matchObj.cutoffRank.toLocaleString()}.`;
       } else {
-        rationale = `With your rank of ${rankNum}, ${matchObj.name} (Cutoff: ${matchObj.cutoffRank}) is a very safe 'Likely' option with high probability of admission.`;
+        tag = 'Target';
+        rationale = `Good probability. You are comfortably within the historical cutoff of ${matchObj.cutoffRank.toLocaleString()}.`;
       }
       
-      return { ...matchObj, rationale };
+      return { ...matchObj, rationale, tag };
     });
 
     return NextResponse.json(matchesWithRationale);

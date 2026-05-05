@@ -78,9 +78,9 @@ export default function PredictorPage() {
 
           {results.length > 0 ? (
             <div className="space-y-3">
-              {results.map((college, idx) => {
-                const tag = idx === 0 ? 'Reach' : idx === 1 ? 'Target' : 'Likely';
-                const tagColor = idx === 0 ? '#f59e0b' : idx === 1 ? 'var(--color-accent)' : 'var(--color-success)';
+              {results.map((college) => {
+                const tag = college.tag || 'Likely';
+                const tagColor = tag === 'Reach' ? '#f59e0b' : tag === 'Safe' ? 'var(--color-success)' : 'var(--color-accent)';
                 return (
                   <div key={college._id}
                     className="rounded-lg p-5 flex items-start gap-5"

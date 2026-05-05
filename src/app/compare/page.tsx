@@ -71,109 +71,119 @@ export default function ComparePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="glass p-8 rounded-xl text-center mb-8">
-        <h1 className="text-3xl font-bold neon-text mb-4">Compare Colleges</h1>
-        <p className="text-gray-300 mb-6">Select up to 3 colleges to compare their fees, placements, and ratings side-by-side.</p>
-        
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-          <select 
-            onChange={handleSelect}
-            className="w-full md:w-96 bg-black border border-[var(--color-glass-border)] rounded px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-blue)]"
-            value=""
-          >
-            <option value="" disabled>Select a college to add...</option>
-            {allColleges.map((c: any) => (
-              <option key={c._id} value={c._id} disabled={selectedIds.includes(c._id)}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-          <button 
-            onClick={fetchComparison}
-            disabled={selectedIds.length === 0 || loading}
-            className="px-6 py-3 bg-[var(--color-neon-blue-dim)] border border-[var(--color-neon-blue)] text-[var(--color-neon-blue)] font-bold rounded hover:bg-[var(--color-neon-blue)] hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Comparing...' : 'Compare Selected'}
-          </button>
-        </div>
-        
-        {selectedIds.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-3 mt-4">
-            {selectedIds.map(id => {
-              const college: any = allColleges.find((c: any) => c._id === id);
-              return college ? (
-                <div key={id} className="glass px-3 py-1 rounded-full flex items-center gap-2 border border-[var(--color-glass-border)] text-sm">
-                  <span className="truncate max-w-[200px]">{college.name}</span>
-                  <button onClick={() => handleRemove(id)} className="text-red-400 hover:text-red-300 font-bold ml-1">×</button>
-                </div>
-              ) : null;
-            })}
-          </div>
-        )}
+    <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="text-center mb-12">
+        <h1 className="text-3xl font-bold mb-3" style={{ color: 'var(--color-foreground)' }}>Compare Institutions</h1>
+        <p className="text-sm max-w-xl mx-auto" style={{ color: 'var(--color-muted)' }}>
+          Select up to 3 institutions to view a detailed side-by-side comparison of fees, placements, and ratings.
+        </p>
       </div>
 
+      <div className="card p-8 mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
+        <select 
+          onChange={handleSelect}
+          className="input-field max-w-md"
+          value=""
+        >
+          <option value="" disabled>Select an institution...</option>
+          {allColleges.map((c: any) => (
+            <option key={c._id} value={c._id} disabled={selectedIds.includes(c._id)}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <button 
+          onClick={fetchComparison}
+          disabled={selectedIds.length === 0 || loading}
+          className="btn-primary px-8"
+        >
+          {loading ? 'Comparing...' : 'Compare Selected'}
+        </button>
+      </div>
+      
+      {selectedIds.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {selectedIds.map(id => {
+            const college: any = allColleges.find((c: any) => c._id === id);
+            return college ? (
+              <div key={id} className="badge tag-jee py-1.5 px-4 rounded-full flex items-center gap-2 border border-transparent">
+                <span className="truncate max-w-[200px]">{college.name}</span>
+                <button onClick={() => handleRemove(id)} className="text-current opacity-60 hover:opacity-100 font-bold ml-1">×</button>
+              </div>
+            ) : null;
+          })}
+        </div>
+      )}
+
       {compareData.length > 0 && (
-        <div className="glass rounded-xl overflow-x-auto border border-[var(--color-glass-border)]">
+        <div className="card overflow-x-auto">
           <table className="w-full min-w-[800px] text-left border-collapse">
             <thead>
-              <tr>
-                <th className="p-4 border-b border-[var(--color-glass-border)] bg-black/40 w-1/4">Metric</th>
+              <tr style={{ background: 'var(--color-surface-2)' }}>
+                <th className="p-5 border-b border-[var(--color-border)] text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-muted)' }}>Metric</th>
                 {compareData.map(c => (
-                  <th key={c._id} className="p-4 border-b border-[var(--color-glass-border)] bg-black/40 w-1/4">
-                    <h3 className="font-bold text-lg neon-text">{c.name}</h3>
-                    <p className="text-sm text-gray-400 font-normal">{c.location}</p>
+                  <th key={c._id} className="p-5 border-b border-[var(--color-border)]">
+                    <h3 className="font-bold text-sm" style={{ color: 'var(--color-foreground)' }}>{c.name}</h3>
+                    <p className="text-xs font-normal" style={{ color: 'var(--color-muted)' }}>{c.location}</p>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-sm">
               {/* Fees */}
               <tr>
-                <td className="p-4 border-b border-[var(--color-glass-border)] font-medium text-gray-300">Annual Fees</td>
+                <td className="p-5 border-b border-[var(--color-border)] font-medium" style={{ color: 'var(--color-muted)' }}>Annual Fees</td>
                 {compareData.map(c => {
                   const isOptimal = getOptimalValue('fees') === c.fees;
                   return (
-                    <td key={c._id} className={`p-4 border-b border-[var(--color-glass-border)] font-mono ${isOptimal ? 'text-[var(--color-neon-blue)] neon-glow rounded-md bg-[var(--color-neon-blue-dim)]' : 'text-white'}`}>
-                      ₹{(c.fees / 100000).toFixed(1)}L
+                    <td key={c._id} className="p-5 border-b border-[var(--color-border)]">
+                      <span className={`px-2 py-1 rounded font-mono ${isOptimal ? 'tag-neet' : ''}`} style={{ color: isOptimal ? 'var(--color-success)' : 'var(--color-foreground)' }}>
+                        ₹{(c.fees / 100000).toFixed(1)}L
+                      </span>
                     </td>
                   );
                 })}
               </tr>
               {/* Rating */}
               <tr>
-                <td className="p-4 border-b border-[var(--color-glass-border)] font-medium text-gray-300">Rating</td>
+                <td className="p-5 border-b border-[var(--color-border)] font-medium" style={{ color: 'var(--color-muted)' }}>Rating</td>
                 {compareData.map(c => {
                   const isOptimal = getOptimalValue('rating') === c.rating;
                   return (
-                    <td key={c._id} className={`p-4 border-b border-[var(--color-glass-border)] font-bold ${isOptimal ? 'text-[var(--color-neon-blue)] neon-glow rounded-md bg-[var(--color-neon-blue-dim)]' : 'text-white'}`}>
-                      ★ {c.rating}
+                    <td key={c._id} className="p-5 border-b border-[var(--color-border)]">
+                      <span className={`px-2 py-1 rounded ${isOptimal ? 'tag-jee' : ''}`} style={{ color: isOptimal ? 'var(--color-accent)' : 'var(--color-foreground)' }}>
+                        ★ {c.rating}
+                      </span>
                     </td>
                   );
                 })}
               </tr>
               {/* Highest Package */}
               <tr>
-                <td className="p-4 border-b border-[var(--color-glass-border)] font-medium text-gray-300">Latest Highest Package</td>
+                <td className="p-5 border-b border-[var(--color-border)] font-medium" style={{ color: 'var(--color-muted)' }}>Latest Highest Package</td>
                 {compareData.map(c => {
                   const val = c.placements?.[c.placements.length - 1]?.highestPackage || 0;
                   const isOptimal = getOptimalValue('highestPackage') === val;
                   return (
-                    <td key={c._id} className={`p-4 border-b border-[var(--color-glass-border)] font-mono ${isOptimal ? 'text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] bg-green-900/20 rounded-md' : 'text-white'}`}>
-                      {val ? `₹${val}L` : 'N/A'}
+                    <td key={c._id} className="p-5 border-b border-[var(--color-border)]">
+                      <span className={`px-2 py-1 rounded font-mono ${isOptimal ? 'tag-neet' : ''}`} style={{ color: isOptimal ? 'var(--color-success)' : 'var(--color-foreground)' }}>
+                        {val ? `₹${val}L` : 'N/A'}
+                      </span>
                     </td>
                   );
                 })}
               </tr>
               {/* Average Package */}
               <tr>
-                <td className="p-4 font-medium text-gray-300">Latest Average Package</td>
+                <td className="p-5 font-medium" style={{ color: 'var(--color-muted)' }}>Latest Average Package</td>
                 {compareData.map(c => {
                   const val = c.placements?.[c.placements.length - 1]?.averagePackage || 0;
                   const isOptimal = getOptimalValue('averagePackage') === val;
                   return (
-                    <td key={c._id} className={`p-4 font-mono ${isOptimal ? 'text-green-400 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)] bg-green-900/20 rounded-md' : 'text-white'}`}>
-                      {val ? `₹${val}L` : 'N/A'}
+                    <td key={c._id} className="p-5">
+                      <span className={`px-2 py-1 rounded font-mono ${isOptimal ? 'tag-neet' : ''}`} style={{ color: isOptimal ? 'var(--color-success)' : 'var(--color-foreground)' }}>
+                        {val ? `₹${val}L` : 'N/A'}
+                      </span>
                     </td>
                   );
                 })}

@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     }
 
     const rankNum = Number(rank);
-    let examType = 'JEE_MAIN';
+    let examType: 'JEE_MAIN' | 'JEE_ADVANCED' | 'NEET' = 'JEE_MAIN';
     if (exam === 'JEE Advanced') examType = 'JEE_ADVANCED';
     else if (exam === 'NEET') examType = 'NEET';
 

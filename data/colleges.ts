@@ -695,7 +695,7 @@ export const colleges = [
     "fees": 600000,
     "rating": 4.7,
     "description": "The top-ranked NIT in India with excellent industry connections.",
-    "image_url": "https://images.unsplash.com/photo-1525926472898-a0f0237c0eb8",
+    "image_url": "/colleges/nit_trichy.png",
     "cutoffRank": 5164,
     "examType": "JEE_MAIN",
     "courses": [
@@ -725,7 +725,7 @@ export const colleges = [
     "fees": 550000,
     "rating": 4.6,
     "description": "Beautiful campus located right on the beach.",
-    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "image_url": "/colleges/generic.png",
     "cutoffRank": 6200,
     "examType": "JEE_MAIN",
     "courses": [
@@ -845,7 +845,7 @@ export const colleges = [
     "fees": 2500,
     "rating": 4.7,
     "description": "A leading new AIIMS with state-of-the-art facilities.",
-    "image_url": "https://images.unsplash.com/photo-1586773860418-d372a67659b5",
+    "image_url": "/colleges/aiims_bhopal.png",
     "cutoffRank": 465,
     "examType": "NEET",
     "courses": [
@@ -877,7 +877,7 @@ export const colleges = [
     "fees": 500000,
     "rating": 4.6,
     "description": "One of the largest NIT campuses.",
-    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "image_url": "/colleges/generic.png",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -907,7 +907,7 @@ export const colleges = [
     "fees": 580000,
     "rating": 4.7,
     "description": "First NIT established in India.",
-    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "image_url": "/colleges/generic.png",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -937,7 +937,7 @@ export const colleges = [
     "fees": 520000,
     "rating": 4.6,
     "description": "Known for its coding culture.",
-    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "image_url": "/colleges/generic.png",
     "courses": [
       {
         "name": "B.Tech CSE",
@@ -967,7 +967,7 @@ export const colleges = [
     "fees": 1100000,
     "rating": 4.5,
     "description": "Fastest growing IIIT.",
-    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585",
+    "image_url": "/colleges/generic.png",
     "courses": [
       {
         "name": "B.Tech CSE",

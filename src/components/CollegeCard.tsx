@@ -11,6 +11,9 @@ export default function CollegeCard({ college }: { college: any; index?: number 
           src={college.image_url}
           alt={college.name}
           className="w-full h-full object-cover opacity-70"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f';
+          }}
         />
         <span
           className="absolute top-2 left-2 badge text-xs"

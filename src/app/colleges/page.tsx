@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import CollegeCard from '@/components/CollegeCard';
+import EmptyState from '@/components/EmptyState';
 
 export default function CollegesPage() {
   const [colleges, setColleges] = useState([]);
@@ -110,10 +111,7 @@ export default function CollegesPage() {
             ))}
           </div>
         ) : (
-          <div className="glass p-12 text-center rounded-xl flex flex-col items-center justify-center h-64">
-            <h3 className="text-2xl font-bold mb-2">No colleges found</h3>
-            <p className="text-gray-400">Try adjusting your filters to find more results.</p>
-          </div>
+          <EmptyState message="Try adjusting your filters to find more results." />
         )}
       </section>
     </div>

@@ -30,14 +30,14 @@ export async function POST(request: Request) {
       const matchObj = match.toObject();
       let rationale = '';
       
-      const safetyMargin = match.cutoffRank - rankNum;
+      const safetyMargin = matchObj.cutoffRank - rankNum;
       
       if (safetyMargin < 100) {
-        rationale = `Your rank of ${rankNum} is very close to the previous closing rank of ${match.cutoffRank}. This is a highly competitive 'Reach' option for you.`;
+        rationale = `Your rank of ${rankNum} is very close to the previous closing rank of ${matchObj.cutoffRank}. This is a highly competitive 'Reach' option for you.`;
       } else if (safetyMargin < 1000) {
-        rationale = `${match.name} is a strong 'Target' option. With a cutoff of ${match.cutoffRank}, you have a solid chance of admission.`;
+        rationale = `${matchObj.name} is a strong 'Target' option. With a cutoff of ${matchObj.cutoffRank}, you have a solid chance of admission.`;
       } else {
-        rationale = `With your rank of ${rankNum}, ${match.name} (Cutoff: ${match.cutoffRank}) is a very safe 'Likely' option with high probability of admission.`;
+        rationale = `With your rank of ${rankNum}, ${matchObj.name} (Cutoff: ${matchObj.cutoffRank}) is a very safe 'Likely' option with high probability of admission.`;
       }
       
       return { ...matchObj, rationale };

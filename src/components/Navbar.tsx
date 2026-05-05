@@ -1,30 +1,39 @@
+'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const links = [
+    { href: '/colleges', label: 'Discover' },
+    { href: '/compare', label: 'Compare' },
+    { href: '/predictor', label: 'Predictor' },
+  ];
+
   return (
-    <nav className="sticky top-0 z-50 glass border-b border-[var(--color-glass-border)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="font-mono text-2xl font-bold tracking-tighter neon-text">
-              UniCompare
+    <header style={{ borderBottom: '1px solid var(--color-border)', background: 'var(--color-background)' }}
+      className="sticky top-0 z-50">
+      <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+        <Link href="/" className="text-sm font-semibold tracking-tight" style={{ color: 'var(--color-foreground)' }}>
+          UniCompare
+        </Link>
+        <nav className="flex items-center gap-1">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="px-3 py-1.5 rounded-md text-sm transition-colors"
+              style={{
+                color: pathname === link.href ? 'var(--color-foreground)' : 'var(--color-muted)',
+                background: pathname === link.href ? 'var(--color-surface-2)' : 'transparent',
+              }}
+            >
+              {link.label}
             </Link>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <Link href="/colleges" className="hover:text-[var(--color-neon-blue)] transition-colors px-3 py-2 rounded-md text-sm font-medium">
-                Discover
-              </Link>
-              <Link href="/compare" className="hover:text-[var(--color-neon-blue)] transition-colors px-3 py-2 rounded-md text-sm font-medium">
-                Compare
-              </Link>
-              <Link href="/predictor" className="hover:text-[var(--color-neon-blue)] transition-colors px-3 py-2 rounded-md text-sm font-medium">
-                Predictor
-              </Link>
-            </div>
-          </div>
-        </div>
+          ))}
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }

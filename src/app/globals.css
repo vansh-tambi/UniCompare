@@ -1,63 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #050505;
-  --color-foreground: #f0f0f0;
-  
-  --color-neon-blue: #00f0ff;
-  --color-neon-blue-dim: rgba(0, 240, 255, 0.15);
-  --color-neon-blue-glow: rgba(0, 240, 255, 0.5);
-  --color-neon-purple: #b026ff;
-  
-  --color-glass: rgba(255, 255, 255, 0.03);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-background: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+  --color-border: #2a2a2a;
+  --color-border-hover: #3a3a3a;
+  --color-foreground: #e8e8e8;
+  --color-muted: #666666;
+  --color-accent: #4f8ef7;
+  --color-accent-dim: rgba(79, 142, 247, 0.12);
+  --color-success: #3ecf8e;
 
-  --font-sans: var(--font-geist-sans), Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 :root {
-  --background: #050505;
-  --foreground: #f0f0f0;
+  --background: #0a0a0a;
+  --foreground: #e8e8e8;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.03), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(176, 38, 255, 0.03), transparent 25%);
+  -webkit-font-smoothing: antialiased;
 }
 
-@utility glass {
-  background-color: var(--color-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
+@utility card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-border-hover);
+  }
 }
 
-@utility neon-glow {
-  box-shadow: 0 0 10px var(--color-neon-blue-dim), 0 0 20px var(--color-neon-blue-glow);
+@utility btn-primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.88;
+  }
 }
 
-@utility neon-text {
-  color: var(--color-neon-blue);
-  text-shadow: 0 0 5px var(--color-neon-blue-glow), 0 0 10px var(--color-neon-blue-glow);
+@utility btn-secondary {
+  background-color: transparent;
+  color: var(--color-foreground);
+  border: 1px solid var(--color-border);
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--color-border-hover);
+    background-color: var(--color-surface-2);
+  }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+@utility input-field {
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: var(--color-foreground);
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: var(--color-accent);
+  }
 }
-::-webkit-scrollbar-track {
-  background: #050505;
-}
-::-webkit-scrollbar-thumb {
-  background: #222;
+
+@utility badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
   border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neon-blue-dim);
+
+@utility tag-jee {
+  background-color: rgba(79, 142, 247, 0.12);
+  color: #4f8ef7;
+}
+
+@utility tag-neet {
+  background-color: rgba(62, 207, 142, 0.12);
+  color: #3ecf8e;
+}
+
+@utility divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
 }

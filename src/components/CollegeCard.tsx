@@ -1,48 +1,63 @@
-"use client";
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-export default function CollegeCard({ college, index }: { college: any, index: number }) {
+export default function CollegeCard({ college }: { college: any; index?: number }) {
+  const latestPlacement = college.placements?.[college.placements.length - 1];
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02 }}
-      className="glass rounded-xl overflow-hidden flex flex-col h-full hover:neon-glow transition-all duration-300"
-    >
-      <div className="h-48 w-full relative bg-gray-800">
-        <img 
-          src={college.image_url} 
-          alt={college.name} 
-          className="object-cover w-full h-full opacity-80"
+    <div className="card flex flex-col h-full rounded-lg overflow-hidden"
+      style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+      <div className="h-40 w-full overflow-hidden bg-neutral-900 relative shrink-0">
+        <img
+          src={college.image_url}
+          alt={college.name}
+          className="w-full h-full object-cover opacity-70"
         />
-        <div className="absolute top-2 right-2 glass px-2 py-1 rounded text-xs font-bold neon-text">
-          ★ {college.rating}
-        </div>
+        <span
+          className="absolute top-2 left-2 badge text-xs"
+          style={{ background: college.examType === 'NEET' ? 'rgba(62,207,142,0.15)' : 'rgba(79,142,247,0.15)', color: college.examType === 'NEET' ? 'var(--color-success)' : 'var(--color-accent)' }}>
+          {college.examType}
+        </span>
       </div>
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold mb-2 line-clamp-2">{college.name}</h3>
-        <p className="text-sm text-gray-400 mb-4">{college.location}</p>
-        <div className="mt-auto space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-500">Avg Fees:</span>
-            <span className="font-mono text-white">₹{(college.fees / 100000).toFixed(1)}L</span>
+
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="font-semibold text-sm mb-0.5 leading-snug line-clamp-2"
+          style={{ color: 'var(--color-foreground)' }}>
+          {college.name}
+        </h3>
+        <p className="text-xs mb-4" style={{ color: 'var(--color-muted)' }}>{college.location}</p>
+
+        <div className="mt-auto space-y-1.5 text-xs">
+          <div className="flex justify-between">
+            <span style={{ color: 'var(--color-muted)' }}>Fees</span>
+            <span className="font-medium" style={{ color: 'var(--color-foreground)' }}>
+              ₹{(college.fees / 100000).toFixed(1)}L
+            </span>
           </div>
-          {college.placements && college.placements.length > 0 && (
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Highest Pkg:</span>
-              <span className="font-mono text-green-400">₹{college.placements[college.placements.length - 1].highestPackage}L</span>
+          {latestPlacement && (
+            <div className="flex justify-between">
+              <span style={{ color: 'var(--color-muted)' }}>Highest Pkg</span>
+              <span className="font-medium" style={{ color: 'var(--color-success)' }}>
+                ₹{latestPlacement.highestPackage}L
+              </span>
+            </div>
+          )}
+          {college.cutoffRank && (
+            <div className="flex justify-between">
+              <span style={{ color: 'var(--color-muted)' }}>CSE Cutoff</span>
+              <span className="font-medium font-mono" style={{ color: 'var(--color-foreground)' }}>
+                {college.cutoffRank.toLocaleString()}
+              </span>
             </div>
           )}
         </div>
-        <Link 
+
+        <Link
           href={`/colleges/${college._id}`}
-          className="mt-4 w-full block text-center glass py-2 rounded font-medium hover:bg-[var(--color-neon-blue-dim)] hover:text-[var(--color-neon-blue)] transition-colors"
-        >
+          className="mt-4 block text-center text-xs py-2 rounded-md font-medium transition-colors"
+          style={{ background: 'var(--color-surface-2)', color: 'var(--color-foreground)', border: '1px solid var(--color-border)' }}>
           View Details
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 }

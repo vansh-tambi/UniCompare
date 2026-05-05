@@ -9,109 +9,92 @@ export default function CollegesPage() {
   const [search, setSearch] = useState('');
   const [location, setLocation] = useState('');
   const [maxFees, setMaxFees] = useState('5000000');
+  const [examType, setExamType] = useState('');
 
-  useEffect(() => {
-    fetchColleges();
-  }, []);
+  useEffect(() => { fetchColleges(); }, []);
 
   const fetchColleges = async () => {
     setLoading(true);
     try {
-      const queryParams = new URLSearchParams();
-      if (search) queryParams.append('search', search);
-      if (location) queryParams.append('location', location);
-      if (maxFees) queryParams.append('maxFees', maxFees);
-
-      const res = await fetch(`/api/colleges?${queryParams.toString()}`);
-      if (res.ok) {
-        const data = await res.json();
-        setColleges(data);
-      }
-    } catch (error) {
-      console.error("Failed to fetch colleges", error);
-    } finally {
-      setLoading(false);
-    }
+      const q = new URLSearchParams();
+      if (search) q.append('search', search);
+      if (location) q.append('location', location);
+      if (maxFees) q.append('maxFees', maxFees);
+      const res = await fetch(`/api/colleges?${q.toString()}`);
+      if (res.ok) setColleges(await res.json());
+    } catch (e) { console.error(e); }
+    finally { setLoading(false); }
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    fetchColleges();
-  };
+  const handleSearch = (e: React.FormEvent) => { e.preventDefault(); fetchColleges(); };
+
+  const filtered = examType ? (colleges as any[]).filter((c: any) => c.examType === examType) : colleges;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
+    <div className="max-w-5xl mx-auto px-6 py-10 flex gap-8">
       {/* Sidebar */}
-      <aside className="w-full md:w-64 shrink-0">
-        <form onSubmit={handleSearch} className="glass p-6 rounded-xl sticky top-24">
-          <h2 className="text-xl font-bold mb-6 neon-text">Filters</h2>
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Name</label>
-              <input 
-                type="text" 
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search college..."
-                className="w-full bg-black/50 border border-[var(--color-glass-border)] rounded px-3 py-2 text-white focus:outline-none focus:border-[var(--color-neon-blue)]"
+      <aside className="w-56 shrink-0 hidden md:block">
+        <form onSubmit={handleSearch}>
+          <div className="sticky top-20 space-y-5">
+            <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--color-muted)' }}>Filters</p>
+
+            <div className="space-y-1">
+              <label className="text-xs" style={{ color: 'var(--color-muted)' }}>Search</label>
+              <input
+                type="text" value={search} onChange={e => setSearch(e.target.value)}
+                placeholder="e.g. IIT Bombay" className="input-field"
+                style={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-border)', color: 'var(--color-foreground)' }}
               />
             </div>
-            
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Location</label>
-              <select 
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                className="w-full bg-black/50 border border-[var(--color-glass-border)] rounded px-3 py-2 text-white focus:outline-none focus:border-[var(--color-neon-blue)]"
-              >
-                <option value="">Any Location</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Telangana">Telangana</option>
+
+            <div className="space-y-1">
+              <label className="text-xs" style={{ color: 'var(--color-muted)' }}>Exam Type</label>
+              <select value={examType} onChange={e => setExamType(e.target.value)}
+                className="input-field"
+                style={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-border)', color: 'var(--color-foreground)' }}>
+                <option value="">All</option>
+                <option value="JEE">JEE</option>
+                <option value="NEET">NEET</option>
               </select>
             </div>
-            
-            <div>
-              <label className="block text-sm text-gray-400 mb-1">Max Fees (₹{(Number(maxFees)/100000).toFixed(0)}L)</label>
-              <input 
-                type="range" 
-                min="100000" 
-                max="5000000" 
-                step="100000"
-                value={maxFees}
-                onChange={(e) => setMaxFees(e.target.value)}
-                className="w-full accent-[var(--color-neon-blue)]"
-              />
+
+            <div className="space-y-1">
+              <label className="text-xs" style={{ color: 'var(--color-muted)' }}>Max Fees — ₹{(Number(maxFees) / 100000).toFixed(0)}L</label>
+              <input type="range" min="100000" max="5000000" step="100000"
+                value={maxFees} onChange={e => setMaxFees(e.target.value)}
+                className="w-full" style={{ accentColor: 'var(--color-accent)' }} />
             </div>
-            
-            <button 
-              type="submit" 
-              className="w-full mt-4 bg-[var(--color-neon-blue-dim)] text-[var(--color-neon-blue)] border border-[var(--color-neon-blue)] py-2 rounded font-bold hover:bg-[var(--color-neon-blue)] hover:text-black transition-colors"
-            >
-              Apply Filters
+
+            <button type="submit"
+              className="w-full py-2 rounded-md text-sm font-medium"
+              style={{ background: 'var(--color-accent)', color: '#fff' }}>
+              Apply
             </button>
           </div>
         </form>
       </aside>
 
       {/* Grid */}
-      <section className="flex-grow">
+      <section className="flex-1 min-w-0">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-base font-semibold" style={{ color: 'var(--color-foreground)' }}>
+            {loading ? 'Loading...' : `${filtered.length} institutions`}
+          </h1>
+        </div>
+
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--color-neon-blue)]"></div>
+          <div className="flex justify-center items-center h-48">
+            <div className="w-5 h-5 border-2 rounded-full animate-spin"
+              style={{ borderColor: 'var(--color-border)', borderTopColor: 'var(--color-accent)' }} />
           </div>
-        ) : colleges.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {colleges.map((college: any, i) => (
-              <CollegeCard key={college._id} college={college} index={i} />
+        ) : filtered.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(filtered as any[]).map((college: any) => (
+              <CollegeCard key={college._id} college={college} />
             ))}
           </div>
         ) : (
-          <EmptyState message="Try adjusting your filters to find more results." />
+          <EmptyState message="No institutions match your filters." />
         )}
       </section>
     </div>
